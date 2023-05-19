@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="">
+  <eClassifiers xsi:type="ecore:EClass" name="Object">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pool" eSuperTypes="#//Object">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lane" upperBound="-1" eType="#//Lane"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Lane"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Process">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" lowerBound="1"
+        upperBound="-1" eType="#//Object" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubProcess" eSuperTypes="#//Activity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Activity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="process" lowerBound="1"
+        upperBound="-1" eType="#//Process" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//Activity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GateWay" eSuperTypes="#//Object"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AND" eSuperTypes="#//GateWay"/>
+  <eClassifiers xsi:type="ecore:EClass" name="XOR" eSuperTypes="#//GateWay"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OR" eSuperTypes="#//GateWay"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Event" eSuperTypes="#//Object"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CallActivity" eSuperTypes="#//Activity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Transaction" eSuperTypes="#//Activity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Artifacts" eSuperTypes="#//Object">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="object" eType="#//Object"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextAnnotation" eSuperTypes="#//Artifacts"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataObject" eSuperTypes="#//Artifacts"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Group" eSuperTypes="#//Artifacts"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Connections" eSuperTypes="#//Object"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceFlow" eSuperTypes="#//Connections">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="2"
+        upperBound="2" eType="#//Activity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MessageFlow" eSuperTypes="#//Connections">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pool" lowerBound="1" eType="#//Pool"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Association" eSuperTypes="#//Connections">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="artifacts" eType="#//Artifacts"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Event_based" eSuperTypes="#//GateWay"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Start" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="End" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Intermediate" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ServiceTask" eSuperTypes="#//Task"/>
+</ecore:EPackage>

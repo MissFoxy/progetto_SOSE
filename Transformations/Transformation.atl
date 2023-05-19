@@ -1,0 +1,12 @@
+-- @path BPMN=/progetto_SOSE/Metamodels/bpmn.ecore
+-- @path UML=/progetto_SOSE/Metamodels/uml.ecore
+
+module Transformation;
+create OUT : UML from IN : BPMN;
+
+rule Pool2ActivityPartition{
+	from
+		s : BPMN!Pool 
+	to 
+		t : UML!ActivityPartition
+}
