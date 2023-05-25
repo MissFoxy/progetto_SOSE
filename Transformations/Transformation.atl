@@ -1,12 +1,35 @@
 -- @path BPMN=/progetto_SOSE/Metamodels/bpmn.ecore
 -- @path UML=/progetto_SOSE/Metamodels/uml.ecore
 
-module Transformation;
-create OUT : UML from IN : BPMN;
 
-rule Pool2ActivityPartition{
+module Transformation;
+create OUT: UML from IN: BPMN;
+
+rule Participant2ActivityPartition {
 	from
-		s : BPMN!Pool 
-	to 
-		t : UML!ActivityPartition
+		s: BPMN!Participant (true)
+	to
+		t: UML!ActivityPartition
 }
+
+rule Lane2InitialNode {
+	from
+		s1: BPMN!Lane (true)
+	to
+		t1: UML!InitialNode
+}
+
+rule StartEvent2InitialNode {
+	from
+		s2: BPMN!StartEvent
+	to
+		t2: UML!InitialNode
+}
+
+rule EndEvent2FinalNode {
+	from
+		s3: BPMN!EndEvent
+	to
+		t3: UML!FinalNode
+}
+
